@@ -1,9 +1,4 @@
-FROM debian:jessie
-
-MAINTAINER Joel Rowley <joel.rowley@wilds.org>
-
-LABEL vendor="The Wilds" \
-      org.wilds.docker-vsftpd.version="1.0.3"
+FROM debian:buster
 
 ENV DEBIAN_FRONTEND noninteractive
 
@@ -13,6 +8,7 @@ RUN apt-get update -qq && apt-get install -qqy --no-install-recommends \
         vim \
         vsftpd \
     && apt-get clean \
+    && apt-get autoclean \
     && rm -rf /var/lib/apt/lists/* /tmp/*
 
 ENV LOG_FILE=/var/log/vsftpd.log \
